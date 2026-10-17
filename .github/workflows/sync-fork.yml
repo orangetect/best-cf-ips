@@ -9,11 +9,6 @@ on:
 permissions:
   contents: write
 
-env:
-  UPSTREAM_REPOSITORY: LancelotRar/best-cf-ips
-  UPSTREAM_BRANCH: main
-  TARGET_BRANCH: main
-
 jobs:
   sync:
     name: Sync fork
@@ -23,7 +18,7 @@ jobs:
       - name: Checkout target branch
         uses: actions/checkout@v5
         with:
-          ref: ${{ env.TARGET_BRANCH }}
+          ref: main
           fetch-depth: 0
 
       - name: Configure Git
@@ -33,17 +28,17 @@ jobs:
 
       - name: Add upstream remote
         run: |
-          git remote add upstream https://github.com/${{ env.UPSTREAM_REPOSITORY }}.git
+          git remote add upstream https://github.com/LancelotRar/best-cf-ips.git
 
       - name: Fetch upstream
         run: |
-          git fetch upstream ${{ env.UPSTREAM_BRANCH }}
+          git fetch upstream main
 
-      - name: Merge upstream into fork
+      - name: Merge upstream
         run: |
-          git merge upstream/${{ env.UPSTREAM_BRANCH }}
+          git merge upstream/main
 
       - name: Push changes
         run: |
-          git push origin ${{ env.TARGET_BRANCH }}
+          git push origin main
 ```
