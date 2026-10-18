@@ -1,44 +1,50 @@
-name: Sync fork with upstream
-
-on:
-  schedule:
-    - cron: "0 3 * * *"
-  workflow_dispatch:
+name: Upstream Sync Multi-Branch
 
 permissions:
   contents: write
 
-env:
-  UPSTREAM_REPOSITORY: LancelotRar/best-cf-ips
-  UPSTREAM_BRANCH: main
-  TARGET_BRANCH: main
+on:
+  schedule:
+    - cron: "0 0 * * *" # 每天 UTC 时间 0点执行
+  workflow_dispatch:
 
 jobs:
-  sync:
-    name: Sync fork
+  sync_branches:
+    name: Sync branch ${{ matrix.branch }}
     runs-on: ubuntu-latest
+    if: ${{ github.event.repository.fork }}
+    
+    # 定义需要同步的分支矩阵
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [main, dev] # 👈 在这里添加你需要同步的所有分支名字
 
     steps:
-      - name: Checkout target branch
+      - name: Checkout target repo
         uses: actions/checkout@v4
         with:
-          ref: ${{ env.TARGET_BRANCH }}
           fetch-depth: 0
+          ref: ${{ matrix.branch }}
 
-      - name: Configure Git
+      - name: Sync upstream changes for ${{ matrix.branch }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "GH Action - Upstream Sync"
+          git config user.email "action@github.com"
 
-      - name: Add upstream remote and sync
-        run: |
-          git remote add upstream https://github.com/${{ env.UPSTREAM_REPOSITORY }}.git
-          git fetch upstream ${{ env.UPSTREAM_BRANCH }}
-          git checkout ${{ env.TARGET_BRANCH }}
-          # 使用 merge 或 rebase 将 upstream 的更新合并到本地目标分支
-          git merge upstream/${{ env.UPSTREAM_BRANCH }} --no-edit
+          git remote add upstream https://github.com/LancelotRar/best-cf-ips
+          git fetch upstream ${{ matrix.branch }}
 
-      - name: Push changes
-        run: |
-          # 只有在有改动时才推送，避免无谓的报错
-          git push origin ${{ env.TARGET_BRANCH }}
+          if git diff --quiet HEAD upstream/${{ matrix.branch }}; then
+            echo "Branch ${{ matrix.branch }} is up to date, resetting..."
+            git reset --hard upstream/${{ matrix.branch }}
+            git push --force-with-lease origin ${{ matrix.branch }}
+          else
+            echo "Merging upstream changes for ${{ matrix.branch }}..."
+            if ! git pull --no-rebase upstream ${{ matrix.branch }}; then
+              echo "[Error] 分支 ${{ matrix.branch }} 合并上游变更产生冲突，自动同步已暂停。"
+              exit 1
+            fi
+            git push origin ${{ matrix.branch }}
+          fi
+
