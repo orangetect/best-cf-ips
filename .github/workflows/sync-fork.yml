@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branch: [main, dev] # 👈 在这里添加你需要同步的所有分支名字
+        branch: [main] # 👈 在这里添加你需要同步的所有分支名字
 
     steps:
       - name: Checkout target repo
