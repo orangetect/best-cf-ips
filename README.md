@@ -1,10 +1,12 @@
+<div align="center">
+
 # Cloudflare 优选IP API（IPV4）
 
-## 提供自动更新的 Cloudflare 优选 IP API，服务于 Cloudflare 免费代理搭建方案，优质 IP 即为优质节点。[频道](https://t.me/liqunchannel) 置顶公益订阅，限时体验 API 效果
+### 提供自动更新的 Cloudflare 优选 IP API，服务于 Cloudflare 免费代理搭建方案，优质 IP 即为优质节点
 
-<p align="center">
-<img src="https://badgen.net/github/stars/LancelotRar/best-cf-ips" align="absmiddle" style="height:25px"> <img src="https://badgen.net/github/forks/LancelotRar/best-cf-ips" align="absmiddle" style="height:25px"> <a href="https://t.me/liqunchannel"><img src="https://badgen.net/badge/利群便利店/频道" align="absmiddle" style="height:25px"></a>
-</p>
+<img src="https://badgen.net/github/stars/LancelotRar/best-cf-ips" align="absmiddle" style="height:20px"> <img src="https://badgen.net/github/forks/LancelotRar/best-cf-ips" align="absmiddle" style="height:20px"> <a href="https://t.me/liqunchannel"><img src="https://badgen.net/badge/利群便利店/频道" align="absmiddle" style="height:20px"></a>
+
+</div>
 
 > [!CAUTION]   
 > **破坏性更新历史，需尽快更新您的 API 链接**：    
@@ -24,13 +26,17 @@
 >  
 > **Workbuddy 国际版，注册即得 100 邀请积分和 250 新人积分**
 > - https://workbuddy.ai/invite?code=7CQMESPP
+>
+> **注册 Muse AI，在加入后的 48 小时内通过“设置”兑现我的邀请码（ 1SU6DJ ），我们就能分别获得 10 亿个 Muse 词元**
+> - https://muse.ai/join
+> - 解决 [“加入等候名单”](https://t.me/liqunchannel/1350)
 
 ## 应用效果
 
 - 转换后的优选 IP 将成为代理节点，再经代理客户端解析，节点名称将显示**国家代码**以及**国旗**。点击图片查看清晰大图
 
 <p align="center">
-  <img src="src/phone1.png" alt="效果图" width="150" height="240"><img src="src/phone2.png" alt="效果图" width="150" height="240"><img src="src/phone3.png" alt="效果图" width="150" height="240"><img src="src/PC.png" alt="效果图" width="430" height="240">
+  <img src="src/phone1.png" alt="效果图" width="16%"> <img src="src/phone2.png" alt="效果图" width="16%"> <img src="src/phone3.png" alt="效果图" width="16%"> <img src="src/PC.png" alt="效果图" width="47%">
 </p>
 
 ## 项目说明
@@ -38,7 +44,7 @@
 - 提供 “**采集聚合 优选IP API**”
 - 提供 “**本仓独立 优选IP API**”
 - 两类优选 IP API ，IP 内容不同，数量不同，互不相属，可同时使用
-- 两类优选 IP API 均可接入 [**Cmliu/edgetunnel**](https://github.com/cmliu/edgetunnel)-"自定义订阅汇聚"，和 [**byJoey/cfnew**](https://github.com/byJoey/cfnew) -"优选IP来源URL"，从而将优选 IP 转换为代理节点。建议具备相应项目基础的用户使用
+- 两类优选 IP API 均可接入 [**Cmliu/edgetunnel**](https://github.com/cmliu/edgetunnel)-"自定义订阅汇聚"，和 [**byJoey/cfnew**](https://github.com/byJoey/cfnew) -"优选 IP 来源 URL"，从而将优选 IP 转换为代理节点。建议具备相应项目基础的用户使用
 - 建议具备一定 Cloudflare 基础网络知识的用户使用。[**Cloudflare anycast IP 机制**](https://github.com/LancelotRar/best-cf-ips/issues/3#issuecomment-5508271687) ，不同运营商解析出的国家区域**可能不同**
 - 为优选 IP 建立**国家区域、旗帜**标识，有助于按国家区域筛选 CF 节点。如使用 Mihomo 代理客户端，可按节点的国家区域建立策略组。并使用 Url-test 策略，仅在该区域内变动节点IP，缓解 CF 节点 IP 变动带来的负面影响。如 Telegram 新账号养号期，节点IP变动频繁、区域位置变动过大，或将引发账号风控。其它代理客户端同理，需自行设置。对其它有IP风控策略的互联网服务，亦有帮助
 - 优选 IP 数量不是越多越好，故另提供**按数量分档**的 API 满足多样化的需求
@@ -46,21 +52,25 @@
 - 如有帮助，请多多star
 
 ## 接入指南
-- **Cmliu/edgetunnel**
-    - 复制粘贴 API 链接至“自定义优选”框中（无需点开下方“订阅接口”按钮）
-    - **<ins>支持填入多个 API 链接</ins>**
-    - 保存
-<p align="center">
-  <img src="src/IN-EDT.png" alt="效果图">
-</p>
 
-- **byJoey/cfnew**
-    - 复制粘贴 API 链接至“优选 IP 来源 URL” 框中
-    - **<ins>仅支持填入单个 API 链接</ins>**
-    - 保存
-<p align="center">
-  <img src="src/IN-CFNEW.png" alt="效果图">
-</p>
+<table>
+  <thead>
+    <tr>
+      <th><div align="center">项目</div></th>
+      <th><div align="center">操作示意</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="middle"><strong>Cmliu/edgetunnel</strong><br>1. 复制粘贴 API 链接至“自定义优选”框中（无需点开下方“订阅接口”按钮）<br>2. <strong><ins>支持填入多个 API 链接</ins></strong><br>3. 保存</td>
+      <td align="center" valign="middle"><img src="src/IN-EDT.png" alt="edgetunnel 接入效果图" width="440"></td>
+    </tr>
+    <tr>
+      <td valign="middle"><strong>byJoey/cfnew</strong><br>1. 复制粘贴 API 链接至“优选 IP 来源 URL” 框中<br>2. <strong><ins>仅支持填入单个 API 链接</ins></strong><br>3. 保存</td>
+      <td align="center" valign="middle"><img src="src/IN-CFNEW.png" alt="cfnew 接入效果图" width="440"></td>
+    </tr>
+  </tbody>
+</table>
 
 ## API 详情
 
